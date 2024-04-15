@@ -8,11 +8,11 @@ Today I Learned is a web application that allows you to learn, react to and add 
 
 <h2>Website Interface 	&#127747</h2>
 Add a Fact:
-![Screenshot (21)](https://github.com/brinikki/today-i-learned/assets/94340126/a7f7c7ae-f0e7-47fa-a4b2-763bcac57983)
+<img src="public/Screenshot21.png" crossorigin>
 Default Website Screenshot:
-![Screenshot (9)](https://github.com/brinikki/today-i-learned/assets/94340126/7f4e3279-75dd-4b78-8cf2-3ce0ec5452dd)
+<img src="public/Screenshot9.png" crossorigin>
 Filter Facts by Category:
-![Screenshot (20)](https://github.com/brinikki/today-i-learned/assets/94340126/5170e47c-0762-4c62-87fa-ce6ac64f6ab9)
+<img src="public/Screenshot20.png" crossorigin>
 
 
 <h2>Tech Stack &#128218</h2>
