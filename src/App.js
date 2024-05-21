@@ -7,7 +7,7 @@ const supabase = createClient(
   "https://pijzctognwscfkmnjkfe.supabase.co",
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBpanpjdG9nbndzY2ZrbW5qa2ZlIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODIyMjEyODIsImV4cCI6MTk5Nzc5NzI4Mn0.lRKLPI6xXn7urXgwG5pvfGP-Xo683PE0U1QAGF3wSj8"
 );
-
+// Initial hardcoded facts (for testing purposes)
 const initialFacts = [
   {
     id: 1,
@@ -41,26 +41,14 @@ const initialFacts = [
     createdIn: 2015,
   },
 ];
-
-function Counter() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <div>
-      <span style={{ fontSize: "40px" }}>{count}</span>
-      <button className="btn btn-large" onClick={() => setCount((c) => c + 1)}>
-        +1
-      </button>
-    </div>
-  );
-}
-
+// if multiple child components need to a specific useState, the state should be under App() to be easily accessed by child components
 function App() {
-  const [showForm, setShowForm] = useState(false);
-  const [facts, setFacts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [currentCategory, setCurrentCategory] = useState("all");
-
+  const [showForm, setShowForm] = useState(false);// Toggle form visibility
+  const [facts, setFacts] = useState([]);// store facts
+  const [isLoading, setIsLoading] = useState(false); // loading state
+  const [currentCategory, setCurrentCategory] = useState("all"); // currently selecged category
+  
+// useEffect to fetch facts from Supabase whenever the category changes
   useEffect(
     function () {
       async function getFacts() {
@@ -74,7 +62,7 @@ function App() {
         const { data: facts, error } = await query
           .order("votesInteresting", { ascending: false })
           .limit(1000);
-
+// display facts
         if (!error) setFacts(facts);
         else console.log(error);
         setIsLoading(false);
@@ -107,7 +95,7 @@ function App() {
 function Loader() {
   return <p className="message">Loading...</p>;
 }
-
+// create state variable 
 function Header({ showForm, setShowForm }) {
   const appTitle = "Today I Learned";
 
@@ -232,9 +220,10 @@ function NewFactForm({ setFacts, setShowForm }) {
     </form>
   );
 }
-
+// Component to filter facts by category
 function CategoryFilter({ setCurrentCategory }) {
   return (
+    // category JSX
     <aside>
       <ul>
         <li className="category">
@@ -261,7 +250,7 @@ function CategoryFilter({ setCurrentCategory }) {
     </aside>
   );
 }
-
+// Component to list all facts
 function FactList({ facts, setFacts }) {
   if (facts.length === 0)
     return (
@@ -281,12 +270,12 @@ function FactList({ facts, setFacts }) {
     </section>
   );
 }
-
+// Component to render a single fact item
 function Fact({ fact, setFacts }) {
   const [isUpdating, setIsUpdating] = useState(false);
   const isDisputed =
     fact.votesInteresting + fact.votesMindblowing < fact.votesFalse;
-
+ // Handle voting for a fact
   async function handleVote(columnName) {
     setIsUpdating(true);
     const { data: updatedFact, error } = await supabase
@@ -323,6 +312,7 @@ function Fact({ fact, setFacts }) {
       <div className="vote-buttons">
         <button
           onClick={() => handleVote("votesInteresting")}
+// disable buttons while vote is added 
           disabled={isUpdating}
         >
           👍 {fact.votesInteresting}
