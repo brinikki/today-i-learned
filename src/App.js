@@ -4,8 +4,8 @@ import "./style.css";
 //import supabase from "./supabase";
 
 const supabase = createClient(
-  "https://wpooqukyfobmnjckqvnt.supabase.co",
-  "sb_publishable_Ad9dXO6cNUH__vokdOQW7Q_n1OQ6fbM"
+  process.env.REACT_APP_SUPABASE_URL,
+  process.env.REACT_APP_SUPABASE_ANON_KEY
 );
 // Initial hardcoded facts (for testing purposes)
 const initialFacts = [
