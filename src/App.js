@@ -8,39 +8,39 @@ const supabase = createClient(
   process.env.REACT_APP_SUPABASE_ANON_KEY
 );
 // Initial hardcoded facts (for testing purposes)
-const initialFacts = [
-  {
-    id: 1,
-    text: "React is being developed by Meta (formerly facebook)",
-    source: "https://opensource.fb.com/",
-    category: "technology",
-    votesInteresting: 24,
-    votesMindblowing: 9,
-    votesFalse: 4,
-    createdIn: 2021,
-  },
-  {
-    id: 2,
-    text: "Millennial dads spend 3 times as much time with their kids than their fathers spent with them. In 1982, 43% of fathers had never changed a diaper. Today, that number is down to 3%",
-    source:
-      "https://www.mother.ly/parenting/millennial-dads-spend-more-time-with-their-kids",
-    category: "society",
-    votesInteresting: 11,
-    votesMindblowing: 2,
-    votesFalse: 0,
-    createdIn: 2019,
-  },
-  {
-    id: 3,
-    text: "Lisbon is the capital of Portugal",
-    source: "https://en.wikipedia.org/wiki/Lisbon",
-    category: "society",
-    votesInteresting: 8,
-    votesMindblowing: 3,
-    votesFalse: 1,
-    createdIn: 2015,
-  },
-];
+// const initialFacts = [
+//   {
+//     id: 1,
+//     text: "React is being developed by Meta (formerly facebook)",
+//     source: "https://opensource.fb.com/",
+//     category: "technology",
+//     votesInteresting: 24,
+//     votesMindblowing: 9,
+//     votesFalse: 4,
+//     createdIn: 2021,
+//   },
+//   {
+//     id: 2,
+//     text: "Millennial dads spend 3 times as much time with their kids than their fathers spent with them. In 1982, 43% of fathers had never changed a diaper. Today, that number is down to 3%",
+//     source:
+//       "https://www.mother.ly/parenting/millennial-dads-spend-more-time-with-their-kids",
+//     category: "society",
+//     votesInteresting: 11,
+//     votesMindblowing: 2,
+//     votesFalse: 0,
+//     createdIn: 2019,
+//   },
+//   {
+//     id: 3,
+//     text: "Lisbon is the capital of Portugal",
+//     source: "https://en.wikipedia.org/wiki/Lisbon",
+//     category: "society",
+//     votesInteresting: 8,
+//     votesMindblowing: 3,
+//     votesFalse: 1,
+//     createdIn: 2015,
+//   },
+// ];
 // if multiple child components need to a specific useState, the state should be under App() to be easily accessed by child components
 function App() {
   const [showForm, setShowForm] = useState(false);// Toggle form visibility
@@ -296,7 +296,7 @@ function Fact({ fact, setFacts }) {
       <p>
         {isDisputed ? <span className="disputed">[⛔️ DISPUTED]</span> : null}
         {fact.text}
-        <a className="source" href={fact.source} target="_blank">
+        <a className="source" href={fact.source} target="_blank" rel="nonreferrer">
           (Source)
         </a>
       </p>
